@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = CmsBase::VERSION
   s.authors     = ["Leo Uzon"]
   s.email       = ["leo.uz86@gmail.com"]
-  s.homepage    = "weareeat.com"
+  s.homepage    = ""
   s.summary     = "Base for cms websites in rails."
   s.description = "Base for cms websites in rails."
 
