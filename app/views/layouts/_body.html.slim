@@ -1,0 +1,18 @@
+body class="action-#{params[:action]}"
+  == setting :injection_html, :after_body if setting :injection_html, :enable_after_body
+  #is-touch class="#{'is-touch ' if touch_device?}"
+  = yield
+  
+  == setting :injection_html, :before_body if setting :injection_html, :enable_before_body
+  
+  javascript:
+    #{setting(:injection_js, :footer_before).html_safe if setting(:injection_js, :enable_footer_before)}
+  = javascript_include_tag layout_name
+  javascript:
+    #{setting(:injection_js, :footer_after).html_safe if setting(:injection_js, :enable_footer_after)}
+  javascript:
+    window.flashMessages = [];    
+  -flash.each do |type, message|
+    javascript:
+      window.flashMessages.push({ type: '#{type}', message: '#{message}' });    
+    

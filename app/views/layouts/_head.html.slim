@@ -1,0 +1,55 @@
+head
+  meta charset="utf-8"
+  meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+  meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+  -title = setting(:general, :title) + (content_for?(:title) ? " | " + content_for(:title) : "")
+  title= title
+
+  meta name="description" content="#{setting :default_meta_tags, :meta_tag_description}"
+  meta name="keywords" content="#{setting :default_meta_tags, :meta_tag_keywords}"
+
+  meta name="fb:app_id" content="#{setting :facebook_meta_tags, :app_id}"
+  meta name="fb:admins" content="#{setting :facebook_meta_tags, :admins_user_ids}"
+
+
+  -og_image = content_for?(:og_image) ? content_for(:og_image) : image_setting(:default_meta_tags, :image)
+
+  -og_description = content_for?(:og_description) ? content_for(:og_description) : setting(:default_meta_tags, :description)
+
+  meta property="og:image" content="#{og_image}"  
+  meta property="og:description" content="#{og_description}"
+  meta property="og:title" content="#{title}"
+  meta property="og:site_name" content="#{setting :default_meta_tags, :site_name}"
+  meta property="og:url" content="#{current_full_url}"
+  meta property="og:locale" content="#{setting :default_meta_tags, :locale}"
+
+  -if setting :twitter_meta_tags, :enable
+    meta name="twitter:card" content="summary"
+    meta name="twitter:site" content="#{setting :twitter_meta_tags, :account}"
+    meta name="twitter:creator" content="@weareeat"
+    meta name="twitter:url" content="#{current_full_url}"
+    meta name="twitter:title" content="#{title}"  
+    meta name="twitter:domain" content="#{setting :general, :domain}"
+    meta name="twitter:description" content="#{og_description}"
+    meta name="twitter:image:src" content="#{og_image}"
+
+  -if setting :google_meta_tags, :enable  
+    link rel="publisher" href="#{setting :google_meta_tags, :publisher_url}"
+
+  = csrf_meta_tags
+
+  / Le HTML5 shim, for IE6-8 support of HTML elements
+  /[if lt IE 9]
+    = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+
+  link href="/favicon.ico?v=2" rel="shortcut icon"
+
+  = render :partial => "common/google-analytics", :formats => [:html]
+
+  = stylesheet_link_tag layout_name, :media => "all"
+    javascript:
+      #{setting(:injection_js, :head).html_safe if setting(:injection_js, :enable_head)}
+    == setting :injection_html, :head if setting :injection_html, :enable_head
+
+  = yield
