@@ -1,0 +1,39 @@
+@mixin column-break-inside($value) {
+  -webkit-column-break-inside: $value;
+  -moz-column-break-inside: $value;
+  column-break-inside: $value;
+}
+
+@mixin pinterest-columns($cols, $gap) {
+  -webkit-column-count: $cols;
+  -webkit-column-gap: $gap;
+  -webkit-column-fill: auto;
+
+  -moz-column-count: $cols;
+  -moz-column-gap: $gap;      
+
+  column-count: $cols;
+  column-gap: $gap;
+  column-fill: auto;
+}
+
+@mixin set-grid-wrapper($margin: 0) {
+  clear: both;
+  width: 100% + $margin;
+  margin-left: -($margin);
+}
+
+@mixin set-grid-custom-block($width, $cols, $margin: 0) {
+  float: left;
+  width: $width - $margin;  
+  display: block;
+  margin-left: $margin;
+}
+
+@mixin set-grid-block($cols, $margin: 0, $adjust: 0) {
+  float: left;
+  width: ((100% - ($cols * $margin)) / $cols) - $adjust;
+  display: block;
+  margin-left: $margin;    
+}
+

@@ -1,0 +1,15 @@
+@mixin ar-font($family, $size, $color) {
+  font-family: $family;  
+  color: $color;
+  @include ar(font-size, $size); 
+}
+
+@mixin ar-top-bottom($property, $size) {
+  @include ar(#{$property}-top, $size);
+  @include ar(#{$property}-bottom, $size);  
+}
+
+@mixin ar-left-right($property, $size) {
+  @include ar(#{$property}-left, $size);
+  @include ar(#{$property}-right, $size);  
+}
