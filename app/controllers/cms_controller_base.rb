@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class CmsControllerBase < ActionController::Base
   helper BsAdmin::SettingsHelper
-  # helper Uzcommon::AllHelpers  
+  # helper Uzcommon::CmsHelper  
 
   protect_from_forgery with: :exception
   after_filter :set_csrf_cookie_for_ng
