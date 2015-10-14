@@ -1,3 +1,11 @@
+@function get-image-width($url, $percentage: 100){
+  @return (image-width('1x/' + $url) / 100) * $percentage;
+}
+
+@function get-image-height($url, $percentage: 100){
+  @return (image-height('1x/' + $url) / 100) * $percentage;
+}
+
 @mixin fobg-image-base($url, $inline:false, $break-2x:1300px) {
   @if $inline {
     background-image: inline-image('1x/' + $url);
@@ -18,37 +26,35 @@
   @include fobg-image-base($url, true);
 }
 
-@mixin fobg-image($url) {
+@mixin fobg-image($url, $percentage: 100) {
   @include fobg-image-base($url);
 
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 
-  width: image-width('1x/' + $url);
-  height: image-height('1x/' + $url);
+  width: get-image-width($url, $percentage);
+  height: get-image-height($url, $percentage);
 }
 
-@mixin fobg-image-absolute-horizontal-center($url) {
-  @include fobg-image($url);  
+@mixin fobg-image-absolute-horizontal-center($url, $percentage: 100) {
+  @include fobg-image($url, $percentage); 
   left: 50%;
-  margin-left: -(image-width('1x/' + $url)/2);
+  margin-left: -(get-image-width($url, $percentage)/2);
   position: absolute;
 }
 
-@mixin fobg-image-absolute-vertical-center($url) {
-  @include fobg-image($url);  
+@mixin fobg-image-absolute-vertical-center($url, $percentage: 100) {
+  @include fobg-image($url, $percentage);  
   top: 50%;
-  margin-top: -(image-height('1x/' + $url)/2);
+  margin-top: -(get-image-height($url, $percentage)/2);
   position: absolute;
 }
 
-@mixin fobg-image-absolute-center($url) {
-  @include fobg-image($url);  
-  top: 50%;
-  margin-top: -(image-height('1x/' + $url)/2);
-  left: 50%;
-  margin-left: -(image-width('1x/' + $url)/2);
+@mixin fobg-image-absolute-center($url, $percentage: 100) {
+  @include fobg-image($url, $percentage);  
+  top: 50%; left: 50%;
+  margin-top: -(get-image-height($url, $percentage)/2);
+  margin-left: -(get-image-width($url, $percentage)/2);
   position: absolute;
 }
-
