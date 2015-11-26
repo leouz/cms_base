@@ -1,0 +1,3 @@
+@function percentage-of($value, $percentage){
+  @return ($value / 100) * $percentage;
+}
