@@ -31,7 +31,7 @@
     t.handleResponse = (result, data) ->      
       t.resetValidation($t)
 
-      if data.errors        
+      if data and data.errors        
         for property of data.errors
           if data.errors.hasOwnProperty(property)            
             $("#{t.options.formGroupSelector}[for=#{property}]", $t).addClass("has-error")
@@ -42,7 +42,7 @@
               $("#{t.options.formGroupSelector}[for=#{property}]", $t).append($errors)
 
       messageShown = false
-      if data.message
+      if data and data.message
         if result and t.options.showSuccessMessageInBootbox          
           bootbox.alert data.message, () -> t.executeEvents(result, data)
           messageShown = true

@@ -25,10 +25,12 @@ class CmsControllerBase < ActionController::Base
     end
   end
 
-  def validate_params required
+  def validate_params required, obj=nil    
+    obj = params unless obj != nil 
+    
     not_satisfied = []
     required.each do |r|
-      not_satisfied << r if params.keys.include?(r) or [nil, ""].include?(params[r])
+      not_satisfied << r if obj.keys.include?(r) or [nil, ""].include?(obj[r])
     end
     
     raise CustomExceptions::ParamsNotSatisfied.new(not_satisfied) if not_satisfied.any?    
