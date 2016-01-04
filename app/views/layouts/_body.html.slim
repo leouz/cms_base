@@ -1,4 +1,4 @@
-body class="action-#{params[:action]}"
+body class="action-#{params[:action]} #{'is-touch ' if touch_device?}"
   == setting :injection_html, :after_body if setting :injection_html, :enable_after_body
   #is-touch class="#{'is-touch ' if touch_device?}"
   = yield
