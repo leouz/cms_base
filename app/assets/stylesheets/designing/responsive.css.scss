@@ -10,6 +10,19 @@
   }
 }
 
+
+@mixin break-min-vertical($h) {
+  @media (min-height : $h) {
+    @content;
+  }
+}
+
+@mixin break-max-vertical($h) {
+  @media (max-height : $h) {
+    @content;
+  }
+}
+
 @mixin break-min-p($min-width, $property, $value) {
   @media only screen and (min-width : $min-width) {
     #{$property}: $value;
