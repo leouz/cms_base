@@ -13,7 +13,7 @@
     background-image: image-url('1x/' + $url);
   }
 
-  @include retina-ratio-or-break-min($break-2x) {
+  @include retina-ratio() {
     @if $inline {
       background-image: inline-image('2x/' + $url);
     } @else {      
