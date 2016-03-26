@@ -17,12 +17,12 @@ head
 
   -og_description = content_for?(:og_description) ? content_for(:og_description) : setting(:default_meta_tags, :description)
 
-  meta property="og:image" content="#{og_image}"  
-  meta property="og:description" content="#{og_description}"
-  meta property="og:title" content="#{title}"
-  meta property="og:site_name" content="#{setting :default_meta_tags, :site_name}"
-  meta property="og:url" content="#{current_full_url}"
-  meta property="og:locale" content="#{setting :default_meta_tags, :locale}"
+  meta name="og:image" content="#{og_image}"  
+  meta name="og:description" content="#{og_description}"
+  meta name="og:title" content="#{title}"
+  meta name="og:site_name" content="#{setting :default_meta_tags, :site_name}"
+  meta name="og:url" content="#{current_full_url}"
+  meta name="og:locale" content="#{setting :default_meta_tags, :locale}"
 
   -if setting :twitter_meta_tags, :enable
     meta name="twitter:card" content="summary"
